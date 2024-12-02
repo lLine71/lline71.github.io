@@ -1,5 +1,5 @@
 // getting places from APIs
-function loadPlaces(position) {
+function loadPlaces(position) {a
     const params = {
         radius: 300,    // search places not farther than this value (in meters)
         clientId: 'TP325WB3HL43TLO3IY5XS52EFS2GLXUKD1FWYBTHOTCD3MVI',
