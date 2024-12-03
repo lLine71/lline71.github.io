@@ -1,6 +1,6 @@
 function loadPlaces(position) {
     const params = {
-        radius: 600,    
+        radius: 300,    
         clientId: 'TP325WB3HL43TLO3IY5XS52EFS2GLXUKD1FWYBTHOTCD3MVI',
         clientSecret: 'YEDHWPKLGAGREQJ5CEJQ3FXX50JNGUE1SALTNABWJTXBUVAQ',
         version: '20300101', 
