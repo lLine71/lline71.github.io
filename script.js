@@ -6,9 +6,9 @@ function loadPlaces(position) {
         version: '20300101', 
     };
 
-    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+    //const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
-    const endpoint = `${corsProxy}https://api.foursquare.com/v2/venues/search?intent=checkin
+    const endpoint = `https://api.foursquare.com/v2/venues/search?intent=checkin
         &ll=${position.latitude},${position.longitude}
         &radius=${params.radius}
         &client_id=${params.clientId}
