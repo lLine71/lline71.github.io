@@ -4,7 +4,7 @@ function loadPlaces(position) {
         radius: 500,    
         clientId: 'TP325WB3HL43TLO3IY5XS52EFS2GLXUKD1FWYBTHOTCD3MVI',
         clientSecret: 'YEDHWPKLGAGREQJ5CEJQ3FXX50JNGUE1SALTNABWJTXBUVAQ',
-        version: '20300101',    // foursquare versioning, required but unuseful for this demo
+        //version: '20300101',    // foursquare versioning, required but unuseful for this demo
     };
 
    
