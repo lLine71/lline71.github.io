@@ -1,4 +1,4 @@
-//position put in below blin
+//position put in below blin nwr[type~"^(cafe|shop)$"];
 async function loadPlaces(cords) {
 	
 	var result = await fetch(
@@ -7,8 +7,7 @@ async function loadPlaces(cords) {
 			method: "POST",
 			body: "data="+ encodeURIComponent(`
 				[out:json][timeout:60];
-				node(around:2000, ${cords.latitude}, ${cords.longitude});
-				nwr[type~"^(cafe|shop)$"]; 
+				node(around:2000, ${cords.latitude}, ${cords.longitude});			 
 				out;
 			`)//add some more stuff to search
 		},
