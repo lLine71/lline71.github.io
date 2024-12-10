@@ -26,7 +26,7 @@ window.onload = () => {
     const scene = document.querySelector('a-scene');
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	//var positioncords;
-	positioncords = 	{latitude: 55.869743, longitude: 37.600729}
+	const positioncords = 	{latitude: 55.869743, longitude: 37.600729};
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	loadPlaces(positioncords)
 		.then((places) => {
@@ -42,7 +42,7 @@ window.onload = () => {
 				placeText.setAttribute('scale', '15 15 15');
 						
 				placeText.addEventListener('loaded', () => {
-					window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+					window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
 				});
 
 				scene.appendChild(placeText);
