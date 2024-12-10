@@ -52,8 +52,9 @@ window.onload = () => {
 		
 	});
 	//}
-};	
 	console.log('hihihi')
+};	
+	
    // return navigator.geolocation.getCurrentPosition(function (position) {
 
    //     loadPlaces(position.coords)
