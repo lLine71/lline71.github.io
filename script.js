@@ -26,31 +26,31 @@ window.onload = () => {
     const scene = document.querySelector('a-scene');
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	//var positioncords;
-	//positioncords = 	{latitude: 36.01068878173828, longitude: 37.20875549316406}
-	return navigator.geolocation.getCurrentPosition(function (position) {
-		loadPlaces(position.cords)
-			.then((places) => {
-				places.elements.forEach((place) => {
-					console.log(place);
-					const latitude = place.lat;
-					const longitude = place.lon;
-					const name = place.tags.name;
+	positioncords = 	{latitude: 36.01068878173828, longitude: 37.20875549316406}
+	//return navigator.geolocation.getCurrentPosition(function (position) {
+	loadPlaces(positioncords)
+		.then((places) => {
+			places.elements.forEach((place) => {
+				console.log(place);
+				const latitude = place.lat;
+				const longitude = place.lon;
+				const name = place.tags.name;
 						
-					const placeText = document.createElement('a-link');
-					placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-					placeText.setAttribute('title', name);
-					placeText.setAttribute('scale', '15 15 15');
+				const placeText = document.createElement('a-link');
+				placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+				placeText.setAttribute('title', name);
+				placeText.setAttribute('scale', '15 15 15');
 						
-					placeText.addEventListener('loaded', () => {
-						window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
-					});
+				placeText.addEventListener('loaded', () => {
+					window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+				});
 
-					scene.appendChild(placeText);
-			});
-					
+				scene.appendChild(placeText);
 		});
-		
+					
 	});
+		
+	//});
 	//}
 	console.log('hihihi')
 };	
