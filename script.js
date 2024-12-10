@@ -7,7 +7,7 @@ async function loadPlaces(cords) {
 			method: "POST",
 			body: "data="+ encodeURIComponent(`
 				[out:json][timeout:60];
-				node(around:100, ${cords.latitude}, ${cords.longitude});
+				node(around:400, ${cords.latitude}, ${cords.longitude});
 				nwr[type~"^(cafe|shop)$"]; 
 				out;
 			`)//add some more stuff to search
@@ -26,7 +26,7 @@ window.onload = () => {
     const scene = document.querySelector('a-scene');
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	//var positioncords;
-	positioncords = 	{latitude: 19.4154332, longitude: -99.1147133}
+	positioncords = 	{latitude: 55.869743, longitude: 37.600729}
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	loadPlaces(positioncords)
 		.then((places) => {
