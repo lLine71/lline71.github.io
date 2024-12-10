@@ -1,64 +1,85 @@
+//position put in below blin
+async function loadPlaces(cords) {
+	
+	var result = await fetch(
+		"https://overpass-api.de/api/interpreter",
+		{
+			method: "POST",
+			body: "data="+ encodeURIComponent(`
+				[out:json][timeout:60];
+				node(around:100, ${cords.latitude}, ${cords.longitude});
+				nwr[type~"^(cafe|shop)$"]; 
+				out;
+			`)//add some more stuff to search
+		},
+	).then(
+		(data)=>data.json()
+	)
 
-function loadPlaces(position) {
-    const params = {
-        radius: 500,    
-        clientId: 'TP325WB3HL43TLO3IY5XS52EFS2GLXUKD1FWYBTHOTCD3MVI',
-        clientSecret: 'YEDHWPKLGAGREQJ5CEJQ3FXX50JNGUE1SALTNABWJTXBUVAQ',
-        version: '20300101',    // foursquare versioning, required but unuseful for this demo
-    };
-
-   
-    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-
-    const endpoint = `${corsProxy}https://api.foursquare.com/v2/venues/search?intent=checkin
-        &ll=${position.latitude},${position.longitude}
-        &radius=${params.radius}
-        &client_id=${params.clientId}
-        &client_secret=${params.clientSecret}
-        &limit=30 
-        &v=${params.version}`;
-    return fetch(endpoint)
-        .then((res) => {
-            return res.json()
-                .then((resp) => {
-                    return resp.response.venues;
-                })
-        })
-        .catch((err) => {
-            console.error('Error with places API', err);
-        })
+	//console.log(JSON.stringify(result , null, 2))
+	
+	return result;
 };
 
 
 window.onload = () => {
     const scene = document.querySelector('a-scene');
+	//return navigator.geolocation.getCurrentPosition(function (position) {
+	//var positioncords;
+	//positioncords = 	{latitude: 36.01068878173828, longitude: 37.20875549316406}
+	return navigator.geolocation.getCurrentPosition(function (position) {
+		loadPlaces(position.cords)
+			.then((places) => {
+				places.elements.forEach((place) => {
+					console.log(place);
+					const latitude = place.lat;
+					const longitude = place.lon;
+					const name = place.tags.name;
+						
+					const placeText = document.createElement('a-link');
+					placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+					placeText.setAttribute('title', name);
+					placeText.setAttribute('scale', '15 15 15');
+						
+					placeText.addEventListener('loaded', () => {
+						window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+					});
 
-    return navigator.geolocation.getCurrentPosition(function (position) {
+					scene.appendChild(placeText);
+			});
+					
+		});
+		
+	});
+	//}
+};	
+	console.log('hihihi')
+   // return navigator.geolocation.getCurrentPosition(function (position) {
 
-        loadPlaces(position.coords)
-            .then((places) => {
-                places.forEach((place) => {
-                    const latitude = place.location.lat;
-                    const longitude = place.location.lng;
-
-                    const placeText = document.createElement('a-link');
-                    placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-                    placeText.setAttribute('title', place.name);
-                    placeText.setAttribute('scale', '15 15 15');
-                    
-                    placeText.addEventListener('loaded', () => {
-                        window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
-                    });
-
-                    scene.appendChild(placeText);
-                });
-            })
-    },
-        (err) => console.error('Error in retrieving position', err),
-        {
-            enableHighAccuracy: true,
-            maximumAge: 0,
-            timeout: 27000,
-        }
-    );
-};
+   //     loadPlaces(position.coords)
+    //        .then((places) => {
+   //             places.forEach((place) => {
+   //                 const latitude = place.lat;
+ //                   const longitude = place.lon;
+//
+ //                   const placeText = document.createElement('a-link');
+  //                  placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+   //                 placeText.setAttribute('title', place.name);
+   //                 placeText.setAttribute('scale', '15 15 15');
+   //                 
+   //                 placeText.addEventListener('loaded', () => {
+   //                     window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+   //                 });
+//
+   //                 scene.appendChild(placeText);
+    //            });
+    //        })
+    //},
+    //    (err) => console.error('Error in retrieving position', err),
+     //   {
+      //      enableHighAccuracy: true,
+     //       maximumAge: 0,
+      //      timeout: 27000,
+      //  }
+   // );
+//};
