@@ -7,7 +7,7 @@ async function loadPlaces(cords) {
 			method: "POST",
 			body: "data="+ encodeURIComponent(`
 				[out:json][timeout:60];
-				node(around:400, ${cords.latitude}, ${cords.longitude});
+				node(around:2000, ${cords.latitude}, ${cords.longitude});
 				nwr[type~"^(cafe|shop)$"]; 
 				out;
 			`)//add some more stuff to search
