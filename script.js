@@ -26,7 +26,7 @@ window.onload = () => {
     const scene = document.querySelector('a-scene');
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	//var positioncords;
-	positioncords = 	{latitude: 36.01068878173828, longitude: 37.20875549316406}
+	positioncords = 	{latitude: 19.4154332, longitude: -99.1147133}
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	loadPlaces(positioncords)
 		.then((places) => {
