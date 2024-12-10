@@ -27,36 +27,36 @@ window.onload = () => {
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	//var positioncords;
 	const positioncords = 	{latitude: 55.869743, longitude: 37.600729};
-	//return navigator.geolocation.getCurrentPosition(function (position) {
-	loadPlaces(positioncords)
-		.then((places) => {
-			places.elements.forEach((place) => {
-				console.log(place);
-				const latitude = place.lat;
-				const longitude = place.lon;
-				const name = place.tags.name;
-						
-				const placeText = document.createElement('a-link');
-				placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-				placeText.setAttribute('title', name);
-				placeText.setAttribute('scale', '15 15 15');
-						
-				placeText.addEventListener('loaded', () => {
-					window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
-				});
+	return navigator.geolocation.getCurrentPosition(function (position) {
+		loadPlaces(positioncords)
+			.then((places) => {
+				places.elements.forEach((place) => {
+					console.log(place);
+					const latitude = place.lat;
+					const longitude = place.lon;
+					const name = place.tags.name;
+							
+					const placeText = document.createElement('a-link');
+					placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+					placeText.setAttribute('title', name);
+					placeText.setAttribute('scale', '15 15 15');
+							
+					placeText.addEventListener('loaded', () => {
+						window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
+					});
 
-				scene.appendChild(placeText);
+					scene.appendChild(placeText);
+			});
+						
 		});
-					
-	});
-	(err) => console.error('Error in retrieving position', err),
-       {
-            enableHighAccuracy: true,
-            maximumAge: 0,
-            timeout: 27000,
-       }
+		(err) => console.error('Error in retrieving position', err),
+		   {
+				enableHighAccuracy: true,
+				maximumAge: 0,
+				timeout: 27000,
+		   }
 		
-	//});
+	});
 	//}
 	console.log('hihihi')
 };	
