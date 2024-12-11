@@ -27,7 +27,7 @@ window.onload = () => {
 	//var positioncords;
 	//const positioncords = 	{latitude: 55.869743, longitude: 37.600729};
 	
-	const positioncords = navigator.geolocation.getCurrentPosition(showPosition);
+	const positioncords = navigator.geolocation.getCurrentPosition(succes);
 	gcam.addEventListener("gps-camera-update-position", e => {
 		loadPlaces(positioncords)
 			.then((places) => {
