@@ -30,9 +30,11 @@ window.onload = () => {
 	//const positioncords = navigator.geolocation.getCurrentPosition(succes);
 	return navigator.geolocation.getCurrentPosition(function (position) { //maybe put down
 		if (gcam){
+			console.log('yesgcam')
 			gcam.addEventListener("gps-camera-update-position", e => {
 				loadPlaces(position.cords)
 					.then((places) => {
+						console.log('try to dispatch places')
 						places.elements.forEach((place) => {
 							console.log(place);
 							//const latitud = place.lat;
