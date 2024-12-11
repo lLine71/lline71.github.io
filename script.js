@@ -29,34 +29,36 @@ window.onload = () => {
 	
 	//const positioncords = navigator.geolocation.getCurrentPosition(succes);
 	return navigator.geolocation.getCurrentPosition(function (position) { //maybe put down
-		gcam.addEventListener("gps-camera-update-position", e => {
-			loadPlaces(position.cords)
-				.then((places) => {
-					places.elements.forEach((place) => {
-						console.log(place);
-						//const latitud = place.lat;
-						//const longitude = place.lon; //мб не const
-						//const name = place.tags.name;
-						alert(name);
-						const placeText = document.createElement('a-link');
-						placeText.setAttribute('gps-new-entity-place', {
-							latitude: place.lat + 0.001,
-							longitude: place.lon
-						});
-						
-						placeText.setAttribute('title', place.tags.name);
-						placeText.setAttribute('scale', '25 25 25');
-									
-						placeText.addEventListener('loaded', () => { //мб убрать
-							window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
-						});
+		if (gcam){
+			gcam.addEventListener("gps-camera-update-position", e => {
+				loadPlaces(position.cords)
+					.then((places) => {
+						places.elements.forEach((place) => {
+							console.log(place);
+							//const latitud = place.lat;
+							//const longitude = place.lon; //мб не const
+							//const name = place.tags.name;
+							alert(name);
+							const placeText = document.createElement('a-link');
+							placeText.setAttribute('gps-new-entity-place', {
+								latitude: place.lat + 0.001,
+								longitude: place.lon
+							});
+							
+							placeText.setAttribute('title', place.tags.name);
+							placeText.setAttribute('scale', '25 25 25');
+										
+							placeText.addEventListener('loaded', () => { //мб убрать
+								window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
+							});
 
-						document.querySelector("a-scene").appendChild(placeText);
+							document.querySelector("a-scene").appendChild(placeText);
+					});
+									
 				});
-								
 			});
-		});
-	
+		}
+		else{ console.log('nogcam')};
 	});	
 	console.log('hihihi')
 };
