@@ -34,9 +34,9 @@ window.onload = () => {
 			loadPlaces(position.cords)
 				.then((places) => {
 					console.log('stillintact');
-					gcam.addEventListener("gps-new-camera-update-position", e => {
+					gcam.addEventListener("gps-camera-update-position", e => {
 				
-						console.log('try to dispatch places')
+						console.log('try to dispatch places');
 						places.elements.forEach((place) => {
 							console.log(place);
 							//const latitud = place.lat;
