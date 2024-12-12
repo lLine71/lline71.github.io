@@ -12,7 +12,7 @@ async function loadPlaces(cords) {
 			`)//add some more stuff to search
 		},
 	).then(
-		(data)=>data.json();
+		(data)=>data.json()
 	)
 
 	//console.log(JSON.stringify(result , null, 2))
