@@ -7,7 +7,8 @@ async function loadPlaces(cords) {
 			method: "POST",
 			body: "data="+ encodeURIComponent(`
 				[out:json][timeout:60];
-				node(around:2000, 51.507351, -0.127758);			 
+				node(around:2000, 51.507351, -0.127758);	
+				nwr[type~"^(cafe|shop)$"];
 				out;
 			`)//add some more stuff to search
 		},
@@ -56,7 +57,7 @@ window.onload = () => {
 							window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
 						});
 
-						document.querySelector("a-scene").appendChild(placeText);
+						document.querySelector('a-scene').appendChild(placeText);
 					});
 									
 				//});
