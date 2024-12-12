@@ -9,7 +9,7 @@ async function loadPlaces(cords) {
 				[out:json][timeout:60];
 				node(around:2000, 51.507351, -0.127758);	
 				nwr[type~"^(cafe|shop)$"];
-				out node;
+				out;
 			`)//add some more stuff to search
 		},
 	).then(
