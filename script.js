@@ -34,7 +34,7 @@ window.onload = () => {
 			loadPlaces(position.cords)
 				.then((places) => {
 					console.log('stillintact');
-					gcam.addEventListener("gps-camera-update-position", (e:any) => {
+					gcam.addEventListener("gps-camera-update-position", e => {
 				
 						console.log('try to dispatch places');
 						places.elements.forEach((place) => {
