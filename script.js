@@ -23,48 +23,49 @@ async function loadPlaces(cords) {
 
 
 window.onload = () => {
-    const gcam = document.querySelector('[gps-new-camera]');
+  //  const gcam = document.querySelector('[gps-new-camera]');
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	//var positioncords;
 	//const positioncords = 	{latitude: 55.869743, longitude: 37.600729};
 	
 	//const positioncords = navigator.geolocation.getCurrentPosition(succes);
+	const scene = document.querySelector('a-scene')
 	return navigator.geolocation.getCurrentPosition(function (position) { //maybe put down
-		if (gcam){
-			console.log('yesgcam');
-			loadPlaces(position.cords)
-				.then((places) => {
-					console.log('stillintact');
-					//gcam.addEventListener("gps-camera-update-position", e => {
+		//if (gcam){
+		console.log('yesgcam');
+		loadPlaces(position.cords)
+			.then((places) => {
+				console.log('stillintact');
+				//gcam.addEventListener("gps-camera-update-position", e => {
 				
-					console.log('try to dispatch places');
-					places.elements.forEach((place) => {
-						console.log(place);
-							//const latitud = place.lat;
-							//const longitude = place.lon; //мб не const
-							//const name = place.tags.name;
-						alert(place.tags.name);
-						const placeText = document.createElement('a-link');
-						placeText.setAttribute('gps-entity-place', {
-							latitude: place.lat + 0.001,
-							longitude: place.lon
-						});
-							
-						placeText.setAttribute('title', place.tags.name);
-						placeText.setAttribute('scale', '25 25 25');
-										
-						placeText.addEventListener('loaded', () => { //мб убрать
-							window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
-						});
-
-						document.querySelector('a-scene').appendChild(placeText);
-						console.log('tried to dispatch');
+				console.log('try to dispatch places');
+				places.elements.forEach((place) => {
+					console.log(place);
+						//const latitud = place.lat;
+						//const longitude = place.lon; //мб не const
+						//const name = place.tags.name;
+					alert(place.tags.name);
+					const placeText = document.createElement('a-link');
+					placeText.setAttribute('gps-entity-place', {
+						latitude: place.lat + 0.001,
+						longitude: place.lon
 					});
+						
+					placeText.setAttribute('title', place.tags.name);
+					placeText.setAttribute('scale', '25 25 25');
+									
+					placeText.addEventListener('loaded', () => { //мб убрать
+						window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
+					});
+
+					scene.appendChild(placeText);
+					console.log('tried to dispatch');
+				});
 									
 				//});
 			});
-		}
-		else{ console.log('nogcam')};
+		//}
+		//else{ console.log('nogcam')};
 	});	
 	console.log('hihihi');
 };
