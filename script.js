@@ -1,6 +1,6 @@
 //position put in below blin nwr[type~"^(cafe|shop)$"];
 async function loadPlaces(cords) {
-	
+	console.log('inLoadPlaces');
 	var result = await fetch(
 		"https://overpass-api.de/api/interpreter",
 		{
@@ -12,7 +12,7 @@ async function loadPlaces(cords) {
 			`)//add some more stuff to search
 		},
 	).then(
-		(data)=>data.json()
+		(data)=>data.json();
 	)
 
 	//console.log(JSON.stringify(result , null, 2))
@@ -30,7 +30,7 @@ window.onload = () => {
 	//const positioncords = navigator.geolocation.getCurrentPosition(succes);
 	return navigator.geolocation.getCurrentPosition(function (position) { //maybe put down
 		if (gcam){
-			console.log('yesgcam')
+			console.log('yesgcam');
 			gcam.addEventListener("gps-camera-update-position", e => {
 				loadPlaces(position.cords)
 					.then((places) => {
@@ -62,7 +62,7 @@ window.onload = () => {
 		}
 		else{ console.log('nogcam')};
 	});	
-	console.log('hihihi')
+	console.log('hihihi');
 };
    // return navigator.geolocation.getCurrentPosition(function (position) {
 
