@@ -43,7 +43,7 @@ window.onload = () => {
 							//const latitud = place.lat;
 							//const longitude = place.lon; //мб не const
 							//const name = place.tags.name;
-						alert(name);
+						alert(place.tags.name);
 						const placeText = document.createElement('a-link');
 						placeText.setAttribute('gps-new-entity-place', {
 							latitude: place.lat + 0.001,
@@ -58,6 +58,7 @@ window.onload = () => {
 						});
 
 						document.querySelector('a-scene').appendChild(placeText);
+						console.log('tried to dispatch');
 					});
 									
 				//});
