@@ -31,9 +31,10 @@ window.onload = () => {
 	return navigator.geolocation.getCurrentPosition(function (position) { //maybe put down
 		if (gcam){
 			console.log('yesgcam');
-			gcam.addEventListener("gps-camera-update-position", e => {
-				loadPlaces(position.cords)
-					.then((places) => {
+			loadPlaces(position.cords)
+				.then((places) => {
+					gcam.addEventListener("gps-camera-update-position", e => {
+				
 						console.log('try to dispatch places')
 						places.elements.forEach((place) => {
 							console.log(place);
