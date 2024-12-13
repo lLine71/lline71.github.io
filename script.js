@@ -29,7 +29,7 @@ window.onload = () => {
 	//const positioncords = 	{latitude: 55.869743, longitude: 37.600729};
 	
 	//const positioncords = navigator.geolocation.getCurrentPosition(succes);
-	const scene = document.querySelector('a-scene')
+	//const scene = document.querySelector('a-scene')
 	return navigator.geolocation.getCurrentPosition(function (position) { //maybe put down
 		//if (gcam){
 		console.log('yesgcam');
@@ -41,9 +41,9 @@ window.onload = () => {
 				console.log('try to dispatch places');
 				places.elements.forEach((place) => {
 					console.log(place);
-						//const latitud = place.lat;
-						//const longitude = place.lon; //мб не const
-						//const name = place.tags.name;
+					//const latitud = place.lat;
+					//const longitude = place.lon; //мб не const
+					//const name = place.tags.name;
 					alert(place.tags.name);
 					const placeText = document.createElement('a-link');
 					placeText.setAttribute('gps-new-entity-place', {
@@ -58,7 +58,7 @@ window.onload = () => {
 						window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
 					});
 
-					scene.appendChild(placeText);
+					document.querySelector('a-scene').appendChild(placeText);
 					console.log('tried to dispatch');
 				});
 									
