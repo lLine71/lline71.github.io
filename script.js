@@ -23,7 +23,7 @@ async function loadPlaces(cords) {
 
 
 window.onload = () => {
-  //  const gcam = document.querySelector('[gps-new-camera]');
+    const gcam = document.querySelector('[gps-new-camera]');
 	//return navigator.geolocation.getCurrentPosition(function (position) {
 	//var positioncords;
 	//const positioncords = 	{latitude: 55.869743, longitude: 37.600729};
