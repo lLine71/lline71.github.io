@@ -43,9 +43,6 @@ window.onload = () => {
 				alert('try to dispatch places');
 				places.elements.forEach((place) => {
 					console.log(place);
-					//const latitud = place.lat;
-					//const longitude = place.lon; //мб не const
-					//const name = place.tags.name;
 					alert(place.tags.name);
 					const placeText = document.createElement('a-link');
 					placeText.setAttribute('gps-new-entity-place', {
@@ -57,6 +54,7 @@ window.onload = () => {
 					placeText.setAttribute('scale', '25 25 25');
 									
 					placeText.addEventListener('loaded', () => { //мб убрать
+						alert('placeTextloaded');
 						window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'));
 					});
 
