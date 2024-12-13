@@ -37,7 +37,7 @@ window.onload = () => {
 			.then((places) => {
 				console.log('stillintact');
 				alert('stillintact');
-				gcam.addEventListener("gps-camera-update-position", e => {
+				document.querySelector('[gps-new-camera]').addEventListener("gps-camera-update-position", e => {
 				
 				console.log('try to dispatch places');
 				alert('try to dispatch places');
