@@ -57,6 +57,7 @@ window.onload = () => {
 	   const mesh = new THREE.Mesh(geometry, material);
 	   mesh.position.set(arObjectPosition.x, arObjectPosition.y, arObjectPosition.z);
 	   scene.add(mesh);
+	   alert("addedMesh");
 	});
 
 	
